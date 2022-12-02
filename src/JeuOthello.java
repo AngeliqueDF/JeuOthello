@@ -7,5 +7,14 @@ public class JeuOthello {
 
     public static void main(String[] args) {
     }
+
+    private void retournerJeton(String coord) {
+        try {
+            plateau.retournerJeton(coord);
+        } catch (RetournerJetonCaseVideException e) {
+            System.out.println(e);
+        }
+    }
+    
     }
 }
