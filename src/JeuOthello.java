@@ -16,5 +16,12 @@ public class JeuOthello {
         }
     }
     
+    private void placerJeton(String coord, char faceInitiale) {
+        try {
+            plateau.placerJeton(coord, faceInitiale);
+        } catch (PlacerJetonCaseNonLibreException e) {
+            System.out.println(e);
+        }
+
     }
 }
