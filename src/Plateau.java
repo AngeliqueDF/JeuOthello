@@ -14,4 +14,18 @@ public class Plateau {
         }
     }
 
+    @Override
+    public String toString() {
+        String result = "";
+
+        if (this.configInitiale) {
+            result += "Ce plateau a été initialisé avec la configuration initiale.\n";
+        }
+
+        for (int i = 0; i < this.cases.length; i++) {
+            result += Arrays.toString(this.cases[i]) + "\n";
+
+        }
+        return result;
+    }
 }
