@@ -1,5 +1,11 @@
 import java.util.Arrays;
 
+class PlacerJetonCaseNonLibreException extends Exception {
+    public PlacerJetonCaseNonLibreException(String message) {
+        super(message);
+    }
+}
+
 class RetournerJetonCaseVideException extends Exception {
     public RetournerJetonCaseVideException(String message) {
         super(message);
@@ -29,6 +35,17 @@ public class Plateau {
             this.cases[rangee][colonne].retournerJeton();
         } else {
             throw new RetournerJetonCaseVideException("Erreur : cette case ne contient aucun jeton.");
+        }
+    }
+
+    void placerJeton(String coord, char faceInitiale) throws PlacerJetonCaseNonLibreException {
+        int colonne = Character.getNumericValue(coord.charAt(0)) - 10;
+        int rangee = Character.getNumericValue(coord.charAt(1)) - 1;
+
+        if (this.cases[rangee][colonne] == null) {
+            this.cases[rangee][colonne] = new Jeton(faceInitiale);
+        } else {
+            throw new PlacerJetonCaseNonLibreException("Erreur : cette case contient déjà un jeton.");
         }
     }
 
