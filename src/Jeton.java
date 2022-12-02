@@ -5,4 +5,8 @@ public class Jeton {
         this.face = faceInitiale;
     }
 
+    @Override
+    public String toString() {
+        return "" + this.face;
+    }
 }
