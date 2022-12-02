@@ -6,6 +6,14 @@ public class JeuOthello {
     }
 
     public static void main(String[] args) {
+        JeuOthello jeu = new JeuOthello(true);
+        jeu.placerJeton("d6", 'B');
+        jeu.retournerJeton("d6");
+        System.out.println(jeu.plateau);
+
+        jeu.retournerJeton("d8");
+        jeu.placerJeton("e4", 'B');
+
     }
 
     private void retournerJeton(String coord) {
