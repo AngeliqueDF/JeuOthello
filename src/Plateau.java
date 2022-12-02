@@ -1,3 +1,17 @@
+import java.util.Arrays;
+
+class PlacerJetonCaseNonLibreException extends Exception {
+    public PlacerJetonCaseNonLibreException(String message) {
+        super(message);
+    }
+}
+
+class RetournerJetonCaseVideException extends Exception {
+    public RetournerJetonCaseVideException(String message) {
+        super(message);
+    }
+}
+
 public class Plateau {
     boolean configInitiale;
     private Jeton[][] cases = new Jeton[8][8];
@@ -14,4 +28,39 @@ public class Plateau {
         }
     }
 
+    void retournerJeton(String coord) throws RetournerJetonCaseVideException {
+        int colonne = Character.getNumericValue(coord.charAt(0)) - 10;
+        int rangee = Character.getNumericValue(coord.charAt(1)) - 1;
+        if (this.cases[rangee][colonne] != null) {
+            this.cases[rangee][colonne].retournerJeton();
+        } else {
+            throw new RetournerJetonCaseVideException("Erreur : cette case ne contient aucun jeton.");
+        }
+    }
+
+    void placerJeton(String coord, char faceInitiale) throws PlacerJetonCaseNonLibreException {
+        int colonne = Character.getNumericValue(coord.charAt(0)) - 10;
+        int rangee = Character.getNumericValue(coord.charAt(1)) - 1;
+
+        if (this.cases[rangee][colonne] == null) {
+            this.cases[rangee][colonne] = new Jeton(faceInitiale);
+        } else {
+            throw new PlacerJetonCaseNonLibreException("Erreur : cette case contient déjà un jeton.");
+        }
+    }
+
+    @Override
+    public String toString() {
+        String result = "";
+
+        if (this.configInitiale) {
+            result += "Ce plateau a été initialisé avec la configuration initiale.\n";
+        }
+
+        for (int i = 0; i < this.cases.length; i++) {
+            result += Arrays.toString(this.cases[i]) + "\n";
+
+        }
+        return result;
+    }
 }
